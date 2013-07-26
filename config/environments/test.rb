@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 SampleApp::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -34,4 +36,8 @@ SampleApp::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  # speed up tests by lowering bcrypt's cost function
+  #ActiveModel::SecurePassword.min_cost = true
+  BCrypt::Engine::DEFAULT_COST = BCrypt::Engine::MIN_COST
 end
