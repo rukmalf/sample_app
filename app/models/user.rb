@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   
   # name attribute and validations
   validates :name, presence: true, length: { maximum: 50 }
+  after_validation { self.errors.messages.delete(:password_digest) }
   
   # email attribute and validations
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
